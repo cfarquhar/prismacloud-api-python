@@ -23,6 +23,10 @@ class SettingsPrismaCloudAPIComputeMixin:
             body_params=body
         )
 
+    def settings_latest_version_read(self):
+        # response example: {'latestVersion': '22.06.213'}
+        return self.execute_compute('get', '/api/v1/settings/latest-version')
+
     def settings_host_auto_deploy_read(self):
         return self.execute_compute('get', 'api/v1/settings/host-auto-deploy')
 
