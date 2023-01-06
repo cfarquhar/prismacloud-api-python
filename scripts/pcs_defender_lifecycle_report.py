@@ -116,9 +116,6 @@ server_ver = PCCVersion()
 # Get all defender versions
 defenders = pc_api.defenders_list_read()
 
-defender_versions = [
-    {"hostname": d["hostname"], "version": d["version"]} for d in defenders
-]
 
 # Reverse sort known major versions
 major_versions_rsorted = sorted(list(map(PCCVersion, MAJOR_VERSIONS)), reverse=True)
@@ -135,7 +132,7 @@ n2 = str(relevant_versions_rsorted[2])
 results = {"n": [], "n-1": [], "n-2": [], "unsupported": []}
 
 # Assign defenders to support categories
-for defender in defender_versions:
+for defender in defenders:
     if PCCVersion(defender["version"]).major == PCCVersion(n):
         results["n"].append(defender)
     elif PCCVersion(defender["version"]).major == PCCVersion(n1):
