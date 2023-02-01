@@ -134,6 +134,9 @@ def parse_images(images, output_mode, search_package_type, search_exact_name, se
                 'instance':  image_ii,
                 'instances': image['instances'],
                 'packages':  image['packages']}
+            normalized_images[image_id]["packages"].append(
+                {"pkgsType": "app", "pkgs": image["binaries"]}
+            )
     optional_print(mode=search_all_packages)
     for image in normalized_images:
         optional_print('Image', mode=output_mode)
@@ -146,6 +149,8 @@ def parse_images(images, output_mode, search_package_type, search_exact_name, se
             for package in packages['pkgs']:
                 optional_print('\tType: %s' % packages['pkgsType'], mode=output_mode)
                 optional_print('\tName: %s' % package['name'], mode=output_mode)
+                if 'version' not in package:
+                    package['version'] = ''
                 optional_print('\tVers: %s' % package['version'], mode=output_mode)
                 if 'path' in package:
                     optional_print('\tPath: %s' % package['path'], mode=output_mode)
