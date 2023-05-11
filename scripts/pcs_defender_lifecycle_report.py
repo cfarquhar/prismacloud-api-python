@@ -20,6 +20,7 @@ pc_api.configure(settings)
 # I think this list will have to be maintained manually since you can't predict future versions.
 # TODO: We should probably warn users that this list needs to be updated if we see a newer version reported by an API call
 MAJOR_VERSIONS = [
+    "30.00",
     "22.12",
     "22.06",
     "22.01",
