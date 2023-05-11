@@ -20,6 +20,7 @@ pc_api.configure(settings)
 # I think this list will have to be maintained manually since you can't predict future versions.
 # TODO: We should probably warn users that this list needs to be updated if we see a newer version reported by an API call
 MAJOR_VERSIONS = [
+    "30.00",
     "22.12",
     "22.06",
     "22.01",
@@ -118,7 +119,9 @@ defenders = pc_api.defenders_list_read()
 
 
 # Reverse sort known major versions
-major_versions_rsorted = sorted(list(map(PCCVersion, MAJOR_VERSIONS)), reverse=True)
+major_versions_rsorted = sorted(
+    [PCCVersion(server_ver.major)] + list(map(PCCVersion, MAJOR_VERSIONS)), reverse=True
+)
 
 # Console version may not be the latest.  Discard any versions that are more recent than the console.
 relevant_versions_rsorted = [
