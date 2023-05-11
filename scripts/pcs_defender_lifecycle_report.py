@@ -118,7 +118,9 @@ defenders = pc_api.defenders_list_read()
 
 
 # Reverse sort known major versions
-major_versions_rsorted = sorted(list(map(PCCVersion, MAJOR_VERSIONS)), reverse=True)
+major_versions_rsorted = sorted(
+    [PCCVersion(server_ver.major)] + list(map(PCCVersion, MAJOR_VERSIONS)), reverse=True
+)
 
 # Console version may not be the latest.  Discard any versions that are more recent than the console.
 relevant_versions_rsorted = [
